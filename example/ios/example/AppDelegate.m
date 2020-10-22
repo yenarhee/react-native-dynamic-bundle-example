@@ -13,6 +13,7 @@
 @interface AppDelegate ()
 {
 RCTRootView *rootView;
+  RCTBridge *bridge;
 }
 @end
 
@@ -34,7 +35,7 @@ RCTRootView *rootView;
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
   [RNDynamicBundle setDefaultBundleURL:jsCodeLocation];
 
-  RCTRootView *rootView = [self getRootViewForBundleURL:[RNDynamicBundle resolveBundleURL]];
+  rootView = [self getRootViewForBundleURL:[RNDynamicBundle resolveBundleURL]];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
@@ -46,22 +47,25 @@ RCTRootView *rootView;
 
 - (void)dynamicBundle:(RNDynamicBundle *)dynamicBundle requestsReloadForBundleURL:(NSURL *)bundleURL
 {
+  [bridge invalidate]; // dealloc the bridge
+  bridge = nil;
+  rootView = nil;
   self.window.rootViewController.view = [self getRootViewForBundleURL:bundleURL];
 }
 
 - (RCTRootView *)getRootViewForBundleURL:(NSURL *)bundleURL
 {
-  RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:bundleURL
+  bridge = [[RCTBridge alloc] initWithBundleURL:bundleURL
                                             moduleProvider:nil
                                              launchOptions:self.launchOptions];
   RNDynamicBundle *dynamicBundle = [bridge moduleForClass:[RNDynamicBundle class]];
   dynamicBundle.delegate = self;
 
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
+  rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"example"
                                             initialProperties:nil];
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
-
+  
   return rootView;
 }
 
