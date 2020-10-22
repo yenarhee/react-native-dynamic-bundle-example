@@ -21,7 +21,7 @@ export default class App extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      url: 'https://raw.githubusercontent.com/yenarhee/self-hosting-example/master/dist/bundles/main.jsbundle',
+      url: 'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp1.ios.bundle',
     };
   }
 
@@ -39,6 +39,7 @@ export default class App extends Component<Props> {
           autoCapitalize="none"
         />
         <Button onPress={this._onReloadButtonPress} title="LOAD" />
+        <Button onPress={this._onTestReloadButtonPress} title="Load Test" />
       </View>
     );
   }
@@ -68,6 +69,30 @@ export default class App extends Component<Props> {
 
     registerBundle('test', 'test.bundle');
     console.log('registerBundle');
+
+    setActiveBundle('test');
+    console.log('setActiveBundle');
+
+    const bundles = await getBundles();
+    console.log(bundles);
+
+    const activeBundle = await getActiveBundle();
+    console.log(activeBundle);
+
+    reloadBundle();
+    console.log('reloadBundle');
+  };
+
+  _onTestReloadButtonPress = async () => {
+    // const granted = await PermissionsAndroid.request(
+    //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+    // );
+    // if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+    //   //alert('You can use the location');
+    //   console.log('write granted');
+    // } else {
+    //   console.log('write denied');
+    // }
 
     setActiveBundle('test');
     console.log('setActiveBundle');
