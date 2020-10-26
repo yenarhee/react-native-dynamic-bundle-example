@@ -1,36 +1,21 @@
-/**
- * Sample RNDynamicBundle app
- * https://github.com/mauritsd/react-native-dynamic-bundle
- * @flow
- */
-
 import React, {Component} from 'react';
 import {StyleSheet, View, Button, TextInput, Text} from 'react-native';
-import {
-  setActiveBundle,
-  registerBundle,
-  reloadBundle,
-  getActiveBundle,
-  getBundles,
-} from 'react-native-dynamic-bundle';
 import AsyncStorage from '@react-native-community/async-storage';
+
 
 type Props = {};
 export default class App extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      url: 'https://raw.githubusercontent.com/yenarhee/self-hosting-example/master/dist/bundles/main.jsbundle',
-      inputData: '',
       commonData: '',
+      inputData: '',
     };
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {/* <Title>Miniapp</Title> */}
-        <Button onPress={this._onBackButtonPress} title="Back" />
         <TextInput
           style={styles.textInput}
           onChangeText={(inputData) => {
@@ -47,32 +32,8 @@ export default class App extends Component<Props> {
       </View>
     );
   }
-
-  _onBackButtonPress = async () => {
-    // const granted = await PermissionsAndroid.request(
-    //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-    // );
-    // if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-    //   //alert('You can use the location');
-    //   console.log('write granted');
-    // } else {
-    //   console.log('write denied');
-    // }
-
-    setActiveBundle(null);
-    console.log('setActiveBundle');
-
-    const bundles = await getBundles();
-    console.log(bundles);
-
-    const activeBundle = await getActiveBundle();
-    console.log(activeBundle);
-
-    reloadBundle();
-    console.log('reloadBundle');
-  };
-
   _storeData = async () => {
+    console.log('_storeData');
     try {
       await AsyncStorage.setItem(
         'DATA',
@@ -89,7 +50,8 @@ export default class App extends Component<Props> {
       const value = await AsyncStorage.getItem('DATA');
       if (value !== null) {
         // We have data!!
-        this.state.commonData = value;
+        const commonData = value;
+        this.setState({commonData});
         console.log(value);
       }
     } catch (error) {
