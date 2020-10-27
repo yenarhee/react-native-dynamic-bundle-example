@@ -599,6 +599,6 @@ __d(function(g,r,i,a,m,e,d){var t=r(d[0]);Object.defineProperty(e,"__esModule",{
 __d(function(g,r,i,a,m,e,d){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var t=r(d[0]).StyleSheet.create({container:{position:"absolute"}});e.default=t},593,[2]);
 __d(function(g,r,i,a,m,e,d){},594,[]);
 __d(function(g,r,i,a,m,e,d){Object.defineProperty(e,"__esModule",{value:!0}),e.useUpdateLayoutEffect=function(u){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:[],f=(0,t.useRef)(!0);(0,t.useLayoutEffect)(function(){f.current?f.current=!1:u()},n)};var t=r(d[0])},595,[55]);
-__d(function(i,p,a,n,m,e,d){m.exports={name:"miniapp1",displayName:"miniapp1"}},596,[]);
+__d(function(e,a,m,p,l,n,x){l.exports={name:"example",displayName:"example"}},596,[]);
 __r(93);
 __r(0);
