@@ -9,7 +9,7 @@ import Loading from '../components/Loading';
 export default function Routes() {
   return (
     <NavigationContainer>
-      <HomeStack />
+      <AuthStack />
     </NavigationContainer>
   );
 }

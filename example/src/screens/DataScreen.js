@@ -16,6 +16,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
+        <Text>Common Data: {this.state.commonData}</Text>
         <TextInput
           style={styles.textInput}
           onChangeText={(inputData) => {
@@ -27,7 +28,6 @@ export default class App extends Component<Props> {
           autoCapitalize="none"
         />
         <Button onPress={this._storeData} title="Save Data" />
-        <Text>Common Data: {this.state.commonData}</Text>
         <Button onPress={this._retrieveData} title="Retrieve Data" />
       </View>
     );

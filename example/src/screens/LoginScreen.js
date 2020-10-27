@@ -12,7 +12,7 @@ export default function LoginScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Title style={styles.titleText}>Welcome to Chat app</Title>
+      <Title style={styles.titleText}>Welcome to Multibundler app</Title>
       <FormInput
         labelName="Email"
         value={email}
@@ -29,7 +29,7 @@ export default function LoginScreen({navigation}) {
         title="Login"
         modeValue="contained"
         labelStyle={styles.loginButtonLabel}
-        onPress={() => login(email, password)}
+        onPress={() => login(email, password) && navigation.goBack()}
       />
       <FormButton
         title="New user? Join here"

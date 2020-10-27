@@ -1,11 +1,5 @@
-/**
- * Sample RNDynamicBundle app
- * https://github.com/mauritsd/react-native-dynamic-bundle
- * @flow
- */
-
 import React, {Component} from 'react';
-import {StyleSheet, View, Button, TextInput} from 'react-native';
+import {StyleSheet, View, Button, TextInput, Text} from 'react-native';
 import {
   setActiveBundle,
   registerBundle,
@@ -13,43 +7,42 @@ import {
   getActiveBundle,
   getBundles,
 } from 'react-native-dynamic-bundle';
-import {Text, Title} from 'react-native-paper';
+import RNFS from 'react-native-fs';
+import {PermissionsAndroid} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { useNavigation } from '@react-navigation/native';
+
 
 type Props = {};
 export default class App extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      url: 'https://raw.githubusercontent.com/yenarhee/self-hosting-example/master/dist/bundles/main.jsbundle',
-      inputData: '',
+      url: 'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp1.ios.bundle',
       commonData: '',
+      inputData: '',
     };
   }
 
-  render() {
+  render() {    
     return (
       <View style={styles.container}>
-        <Title>Miniapp</Title>
-        <Button onPress={this._onBackButtonPress} title="Back" />
-        <Text>Common Data: {this.state.commonData}</Text>
         <TextInput
           style={styles.textInput}
-          onChangeText={(inputData) => {
-            this.setState({inputData});
+          onChangeText={(url) => {
+            this.setState({url});
           }}
-          value={this.state.inputData}
+          value={this.state.url}
           autocorrect={false}
-          placeholder="Common Data"
+          placeholder="URL"
           autoCapitalize="none"
         />
-        <Button onPress={this._storeData} title="Save Data" />
-        <Button onPress={this._retrieveData} title="Retrieve Data" />
+        <Button onPress={this._onReloadButtonPress} title="LOAD" />
       </View>
     );
   }
 
-  _onBackButtonPress = async () => {
+  _onReloadButtonPress = async () => {
     // const granted = await PermissionsAndroid.request(
     //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
     // );
@@ -60,7 +53,22 @@ export default class App extends Component<Props> {
     //   console.log('write denied');
     // }
 
-    setActiveBundle(null);
+    const {promise} = RNFS.downloadFile({
+      fromUrl: this.state.url,
+      toFile: RNFS.DocumentDirectoryPath + '/test.bundle',
+    });
+    const result = await promise;
+    console.log(RNFS.DocumentDirectoryPath);
+
+    // const read = await RNFS.readFile(
+    //   RNFS.DocumentDirectoryPath + '/test.bundle',
+    // );
+    // console.log(read);
+
+    registerBundle('test', 'test.bundle');
+    console.log('registerBundle');
+
+    setActiveBundle('test');
     console.log('setActiveBundle');
 
     const bundles = await getBundles();
@@ -71,32 +79,6 @@ export default class App extends Component<Props> {
 
     reloadBundle();
     console.log('reloadBundle');
-  };
-
-  _storeData = async () => {
-    try {
-      await AsyncStorage.setItem(
-        'DATA',
-        this.state.inputData
-      );
-    } catch (error) {
-      // Error saving data
-      console.log(error);
-    }
-  };
-
-  _retrieveData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('DATA');
-      if (value !== null) {
-        // We have data!!
-        this.state.commonData = value;
-        console.log(value);
-      }
-    } catch (error) {
-      // Error retrieving data
-      console.log(error);
-    }
   };
 }
 
