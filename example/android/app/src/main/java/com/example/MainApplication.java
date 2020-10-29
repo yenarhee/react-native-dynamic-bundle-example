@@ -9,6 +9,10 @@ import android.util.Log;
 import android.content.Context;
 
 import com.facebook.react.ReactApplication;
+import com.amazonaws.RNAWSCognitoPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.reactnativecommunity.netinfo.NetInfoPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.react.ReactInstanceManager;
 import com.rnfs.RNFSPackage;
 
@@ -19,6 +23,9 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+
+import com.oblador.keychain.KeychainPackage;
+import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,8 +44,14 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNAWSCognitoPackage(),
+            new RNGestureHandlerPackage(),
+            new NetInfoPackage(),
+            new AsyncStoragePackage(),
             new RNFSPackage(),
-            new RNDynamicBundlePackage()
+            new RNDynamicBundlePackage(),
+            new KeychainPackage(),
+            new SafeAreaContextPackage()
       );
     }
 

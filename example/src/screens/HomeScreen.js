@@ -23,22 +23,9 @@ export default class App extends Component<Props> {
     this.state = {userToken: null};
   }
 
-  async checkToken() {
-    console.log('checkToken');
-    console.log(this.state);
-    try {
-      const userToken = await this.context.getToken();
-      if (userToken !== null) {
-        this.setState({userToken});
-      }
-    } catch (error) {
-      // Error getItem from AsyncStorage
-      console.log(error);
-    }
-  }
-
   componentDidMount() {
     this.context.bootstrap();
+    console.log(React.version);
   }
 
   render() {

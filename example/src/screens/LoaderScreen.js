@@ -12,13 +12,15 @@ import {PermissionsAndroid} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
+const _miniapp1Url = 'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp1.ios.bundle';
+const _miniapp2Url = 'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp2.ios.bundle';
 
 type Props = {};
 export default class App extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      url: 'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp1.ios.bundle',
+      url: 'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp1-1.ios.bundle',
       commonData: '',
       inputData: '',
     };
@@ -38,11 +40,13 @@ export default class App extends Component<Props> {
           autoCapitalize="none"
         />
         <Button onPress={this._onReloadButtonPress} title="LOAD" />
+        <Button onPress={this._onMiniapp1ButtonPress} title="Open Miniapp1" />
+        <Button onPress={this._onMiniapp2ButtonPress} title="Open Miniapp2" />
       </View>
     );
   }
 
-  _onReloadButtonPress = async () => {
+  _downloadAndReloadBundle = async (url) => {
     // const granted = await PermissionsAndroid.request(
     //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
     // );
@@ -54,7 +58,7 @@ export default class App extends Component<Props> {
     // }
 
     const {promise} = RNFS.downloadFile({
-      fromUrl: this.state.url,
+      fromUrl: url,
       toFile: RNFS.DocumentDirectoryPath + '/test.bundle',
     });
     const result = await promise;
@@ -79,6 +83,18 @@ export default class App extends Component<Props> {
 
     reloadBundle();
     console.log('reloadBundle');
+  };
+
+  _onReloadButtonPress = async () => {
+    this._downloadAndReloadBundle(this.state.url);
+  };
+
+  _onMiniapp1ButtonPress = async () => {
+    this._downloadAndReloadBundle(_miniapp1Url);
+  };
+
+  _onMiniapp2ButtonPress = async () => {
+    this._downloadAndReloadBundle(_miniapp2Url);
   };
 }
 

@@ -47,12 +47,11 @@ export default class App extends Component<Props> {
 
   _retrieveData = async () => {
     try {
-      const value = await AsyncStorage.getItem('DATA');
-      if (value !== null) {
+      const commonData = await AsyncStorage.getItem('DATA');
+      if (commonData !== null) {
         // We have data!!
-        const commonData = value;
         this.setState({commonData});
-        console.log(value);
+        console.log(commonData);
       }
     } catch (error) {
       // Error retrieving data
