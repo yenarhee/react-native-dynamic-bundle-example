@@ -7,6 +7,7 @@ import android.app.Application;
 import android.net.Uri;
 import android.util.Log;
 import android.content.Context;
+import androidx.multidex.MultiDexApplication; 
 
 import com.facebook.react.ReactApplication;
 import com.amazonaws.RNAWSCognitoPackage;
@@ -32,7 +33,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class MainApplication extends Application implements ReactApplication {
+public class MainApplication extends MultiDexApplication implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -86,27 +87,27 @@ public class MainApplication extends Application implements ReactApplication {
    * @param context
    * @param reactInstanceManager
    */
-  private static void initializeFlipper(
-      Context context, ReactInstanceManager reactInstanceManager) {
-    if (BuildConfig.DEBUG) {
-      try {
-        /*
-         We use reflection here to pick up the class that initializes Flipper,
-        since Flipper library is not available in release mode
-        */
-        Class<?> aClass = Class.forName("com.example.ReactNativeFlipper");
-        aClass
-            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
-            .invoke(null, context, reactInstanceManager);
-      } catch (ClassNotFoundException e) {
-        e.printStackTrace();
-      } catch (NoSuchMethodException e) {
-        e.printStackTrace();
-      } catch (IllegalAccessException e) {
-        e.printStackTrace();
-      } catch (InvocationTargetException e) {
-        e.printStackTrace();
-      }
-    }
-  }
+//  private static void initializeFlipper(
+//      Context context, ReactInstanceManager reactInstanceManager) {
+//    if (BuildConfig.DEBUG) {
+//      try {
+//        /*
+//         We use reflection here to pick up the class that initializes Flipper,
+//        since Flipper library is not available in release mode
+//        */
+//        Class<?> aClass = Class.forName("com.example.ReactNativeFlipper");
+//        aClass
+//            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
+//            .invoke(null, context, reactInstanceManager);
+//      } catch (ClassNotFoundException e) {
+//        e.printStackTrace();
+//      } catch (NoSuchMethodException e) {
+//        e.printStackTrace();
+//      } catch (IllegalAccessException e) {
+//        e.printStackTrace();
+//      } catch (InvocationTargetException e) {
+//        e.printStackTrace();
+//      }
+//    }
+//  }
 }

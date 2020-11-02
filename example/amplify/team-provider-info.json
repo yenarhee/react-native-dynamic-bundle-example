@@ -1,15 +1,27 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-rnmultibundler-dev-140102-authRole",
-      "UnauthRoleArn": "arn:aws:iam::913309808760:role/amplify-rnmultibundler-dev-140102-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::913309808760:role/amplify-rnmultibundler-dev-140102-authRole",
-      "Region": "ap-southeast-1",
-      "DeploymentBucketName": "amplify-rnmultibundler-dev-140102-deployment",
-      "UnauthRoleName": "amplify-rnmultibundler-dev-140102-unauthRole",
-      "StackName": "amplify-rnmultibundler-dev-140102",
-      "StackId": "arn:aws:cloudformation:ap-southeast-1:913309808760:stack/amplify-rnmultibundler-dev-140102/a687eb00-1750-11eb-bea0-06066853c14c",
-      "AmplifyAppId": "d11uxn8m5s79ps"
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-rnmultibundler-dev-140102-authRole",
+            "UnauthRoleArn": "arn:aws:iam::913309808760:role/amplify-rnmultibundler-dev-140102-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::913309808760:role/amplify-rnmultibundler-dev-140102-authRole",
+            "Region": "ap-southeast-1",
+            "DeploymentBucketName": "amplify-rnmultibundler-dev-140102-deployment",
+            "UnauthRoleName": "amplify-rnmultibundler-dev-140102-unauthRole",
+            "StackName": "amplify-rnmultibundler-dev-140102",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:913309808760:stack/amplify-rnmultibundler-dev-140102/a687eb00-1750-11eb-bea0-06066853c14c",
+            "AmplifyAppId": "d11uxn8m5s79ps"
+        },
+        "categories": {
+            "auth": {
+                "cognitoaf5872e9": {}
+            },
+            "notifications": {
+                "Pinpoint": {
+                    "Name": "RNmultibundlerk4f4D-dev",
+                    "Id": "a6daac187b7542ed9637c5572cbe263a",
+                    "Region": "us-west-2"
+                }
+            }
+        }
     }
-  }
 }

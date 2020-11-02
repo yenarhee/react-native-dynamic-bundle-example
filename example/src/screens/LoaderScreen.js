@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Button, TextInput, Text} from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  View,
+  Button,
+  TextInput,
+  Text,
+} from 'react-native';
 import {
   setActiveBundle,
   registerBundle,
@@ -10,23 +17,36 @@ import {
 import RNFS from 'react-native-fs';
 import {PermissionsAndroid} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
-const _miniapp1Url = 'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp1.ios.bundle';
-const _miniapp2Url = 'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp2.ios.bundle';
+const urls = Platform.select({
+  ios: {
+    _miniapp1Url:
+      'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp1.ios.bundle',
+    _miniapp2Url:
+      'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp2.ios.bundle',
+  },
+  android: {
+    _miniapp1Url:
+      'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp1.android.bundle',
+    _miniapp2Url:
+      'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp2.android.bundle',
+  },
+});
 
 type Props = {};
 export default class App extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      url: 'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp1-1.ios.bundle',
+      url:
+        'https://raw.githubusercontent.com/yenarhee/react-native-dynamic-bundle-example/master/bundles/miniapp1-1.ios.bundle',
       commonData: '',
       inputData: '',
     };
   }
 
-  render() {    
+  render() {
     return (
       <View style={styles.container}>
         <TextInput
@@ -57,6 +77,8 @@ export default class App extends Component<Props> {
     //   console.log('write denied');
     // }
 
+    console.log('url:', url);
+
     const {promise} = RNFS.downloadFile({
       fromUrl: url,
       toFile: RNFS.DocumentDirectoryPath + '/test.bundle',
@@ -76,10 +98,10 @@ export default class App extends Component<Props> {
     console.log('setActiveBundle');
 
     const bundles = await getBundles();
-    console.log(bundles);
+    console.log('getBundles()', bundles);
 
     const activeBundle = await getActiveBundle();
-    console.log(activeBundle);
+    console.log('getActiveBundle()', activeBundle);
 
     reloadBundle();
     console.log('reloadBundle');
@@ -90,11 +112,11 @@ export default class App extends Component<Props> {
   };
 
   _onMiniapp1ButtonPress = async () => {
-    this._downloadAndReloadBundle(_miniapp1Url);
+    this._downloadAndReloadBundle(urls._miniapp1Url);
   };
 
   _onMiniapp2ButtonPress = async () => {
-    this._downloadAndReloadBundle(_miniapp2Url);
+    this._downloadAndReloadBundle(urls._miniapp2Url);
   };
 }
 

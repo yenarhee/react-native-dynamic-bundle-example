@@ -1,1 +1,16 @@
-{}
+{
+    "auth": {
+        "cognitoaf5872e9": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "notifications": {
+        "RNmultibundlerk4f4D": {
+            "service": "Pinpoint",
+            "channels": [
+                "FCM"
+            ]
+        }
+    }
+}
