@@ -8,7 +8,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@aws-amplify/pushnotification": "^3.2.9",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "^5.9.7",
@@ -23,6 +22,7 @@
     "react-native-gesture-handler": "^1.8.0",
     "react-native-keychain": "^6.2.0",
     "react-native-paper": "^4.2.0",
+    "react-native-push-notification": "^6.1.2",
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.11.0",
     "react-native-vector-icons": "^7.1.0"

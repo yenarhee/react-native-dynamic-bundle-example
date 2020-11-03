@@ -10,6 +10,7 @@ import android.content.Context;
 import androidx.multidex.MultiDexApplication; 
 
 import com.facebook.react.ReactApplication;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.amazonaws.RNAWSCognitoPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
@@ -45,6 +46,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativePushNotificationPackage(),
             new RNAWSCognitoPackage(),
             new RNGestureHandlerPackage(),
             new NetInfoPackage(),

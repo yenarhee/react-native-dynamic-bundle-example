@@ -88,9 +88,9 @@ export const AuthProvider = ({children}) => {
     login: async (email, password) => {
       try {
         console.log('login');
-        // await auth().signInWithEmailAndPassword(email, password);
-        await Auth.signIn(email, password);
-        // console.log(Auth.Credentials);
+        if (email!='guest') {
+          await Auth.signIn(email, password);
+        }
         _setSecureValue('@MySuperStore:' + _key, 'dummy-auth-token');
         dispatch({type: 'SIGN_IN', token: 'dummy-auth-token'});
       } catch (e) {
@@ -100,7 +100,6 @@ export const AuthProvider = ({children}) => {
     register: async (email, password) => {
       try {
         console.log('register');
-        // await auth().createUserWithEmailAndPassword(email, password);
         await Auth.signUp({
           username: email,
           password: password,
@@ -118,7 +117,6 @@ export const AuthProvider = ({children}) => {
     logout: async () => {
       try {
         console.log('logout');
-        // await auth().signOut();
         await Auth.signOut();
         _removeSecureValue('@MySuperStore:' + _key);
         dispatch({type: 'SIGN_OUT'});

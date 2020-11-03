@@ -38,6 +38,13 @@ export default function LoginScreen({navigation}) {
         labelStyle={styles.navButtonText}
         onPress={() => navigation.navigate('Signup')}
       />
+      <FormButton
+        title="Continue as Guest"
+        modeValue="text"
+        uppercase={false}
+        labelStyle={styles.navButtonText}
+        onPress={() => login('guest', '') && navigation.goBack()}
+      />
     </View>
   );
 }

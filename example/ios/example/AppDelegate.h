@@ -7,12 +7,13 @@
 
 #import <React/RCTBridgeDelegate.h>
 #import <UIKit/UIKit.h>
+#import <UserNotifications/UNUserNotificationCenter.h>
 
 #import <RNDynamicBundle.h>
 
 @class RCTRootView;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, RNDynamicBundleDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, RNDynamicBundleDelegate, UNUserNotificationCenterDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) NSDictionary *launchOptions;

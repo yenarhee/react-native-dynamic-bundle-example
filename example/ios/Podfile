@@ -44,6 +44,9 @@ target 'example' do
 
   pod 'RNAWSCognito', :path => '../node_modules/amazon-cognito-identity-js'
 
+  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
+
+
   target 'exampleTests' do
     inherit! :search_paths
     # Pods for testing
