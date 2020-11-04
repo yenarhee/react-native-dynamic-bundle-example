@@ -36,7 +36,6 @@ function _removeSecureValue(key) {
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {

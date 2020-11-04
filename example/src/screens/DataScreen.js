@@ -32,6 +32,7 @@ export default class App extends Component<Props> {
       </View>
     );
   }
+  
   _storeData = async () => {
     console.log('_storeData');
     try {

@@ -40,10 +40,16 @@ export default class App extends Component<Props> {
     if (this.context.state.userToken == null) {
       // No token found, user isn't signed in
       return (
-        <Button
-          onPress={() => this.props.navigation.navigate('Login')}
-          title="Login"
-        />
+        <View style={styles.container}>
+          <Button
+            onPress={() => this.props.navigation.navigate('Login')}
+            title="Login"
+          />
+          <Button
+              onPress={() => this.props.navigation.navigate('Loader')}
+              title="Load a bundle"
+          />
+        </View>
       );
     } else {
       // User is signed in
