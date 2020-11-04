@@ -1,0 +1,3 @@
+rootProject.name = 'miniapp2'
+
+include ':app'
