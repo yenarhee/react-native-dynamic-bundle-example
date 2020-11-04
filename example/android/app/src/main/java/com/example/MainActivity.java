@@ -23,6 +23,7 @@ public class MainActivity extends ReactActivity implements RNDynamicBundleModule
             @Override
             public void onReactContextInitialized(ReactContext context) {
                 MainActivity.this.module = context.getNativeModule(RNDynamicBundleModule.class);
+                module.setActiveBundle(null); // Load the initial screen everytime the app closes
                 module.setListener(MainActivity.this);
             }
         });
@@ -31,6 +32,7 @@ public class MainActivity extends ReactActivity implements RNDynamicBundleModule
     @Override
     protected void onStart() {
         super.onStart();
+
 
         if (module != null) {
             module.setListener(this);
