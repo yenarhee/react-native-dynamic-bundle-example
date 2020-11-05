@@ -38,7 +38,8 @@ export const AuthProvider = ({children}) => {
       let userToken;
 
       try {
-        userToken = await _getSecureValue('@MySuperStore:' + _key);
+        // userToken = await _getSecureValue('@MySuperStore:' + _key);
+        userToken = 'dummy-auth-token';
       } catch (e) {
         // Restoring token failed
         console.log(e);

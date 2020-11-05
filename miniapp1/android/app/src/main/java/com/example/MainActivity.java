@@ -1,4 +1,4 @@
-package com.miniapp1;
+package com.example;
 
 import com.facebook.react.ReactActivity;
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Button, TextInput} from 'react-native';
+import {Alert, View, StyleSheet, Button, TextInput} from 'react-native';
 import {Text, Title} from 'react-native-paper';
 import {
   setActiveBundle,
@@ -10,7 +10,8 @@ import {
 
 import {AuthContext} from '../navigation/AuthProvider';
 import AsyncStorage from '@react-native-community/async-storage';
-// import NotifService from '../services/NotifService';
+import NotifService from '../services/NotifService';
+import {LocalNotification} from '../services/LocalNotificationService';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,10 +33,10 @@ export default class App extends Component<Props> {
       commonData: '',
       inputData: '',
     };
-    // this.notif = new NotifService(
-    //   this.onRegister.bind(this),
-    //   this.onNotif.bind(this),
-    // );
+    this.notif = new NotifService(
+      this.onRegister.bind(this),
+      this.onNotif.bind(this),
+    );
   }
 
   componentDidMount() {
@@ -69,6 +70,10 @@ export default class App extends Component<Props> {
             />
             <Button onPress={this._storeData} title="Save Data" />
             <Button onPress={this._retrieveData} title="Retrieve Data" />
+            <Button
+              onPress={() => LocalNotification()}
+              title="Local Push Notification"
+            />
           </View>
         </>
       );
@@ -113,11 +118,11 @@ export default class App extends Component<Props> {
     }
   };
 
-  // onRegister(token) {
-  //   this.setState({registerToken: token.token, fcmRegistered: true});
-  // }
+  onRegister(token) {
+    this.setState({registerToken: token.token, fcmRegistered: true});
+  }
 
-  // onNotif(notif) {
-  //   Alert.alert(notif.title, notif.message);
-  // }
+  onNotif(notif) {
+    Alert.alert(notif.title, notif.message);
+  }
 }
