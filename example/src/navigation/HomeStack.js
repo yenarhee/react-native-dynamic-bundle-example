@@ -9,18 +9,8 @@ const HomeAppStack = createStackNavigator();
 
 export default function ChatApp() {
   return (
-    <HomeAppStack.Navigator screenOptions={style}>
+    <HomeAppStack.Navigator>
       <HomeAppStack.Screen name="Home" component={HomeScreen} />
     </HomeAppStack.Navigator>
   );
 }
-
-const style = {
-  headerStyle: {
-    backgroundColor: '#6646ee',
-  },
-  headerTintColor: '#ffffff',
-  headerTitleStyle: {
-    fontSize: 22,
-  },
-};
