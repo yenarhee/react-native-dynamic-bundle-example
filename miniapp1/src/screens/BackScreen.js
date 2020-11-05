@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import {StyleSheet, View, Button, TextInput} from 'react-native';
 import {
   setActiveBundle,
@@ -8,12 +8,19 @@ import {
   getBundles,
 } from 'react-native-dynamic-bundle';
 import {Text, Title} from 'react-native-paper';
+import {AuthContext} from '../navigation/AuthProvider';
 
 type Props = {};
 export default class App extends Component<Props> {
+  // static contextType = AuthContext;
+
   constructor(props) {
     super(props);
   }
+
+  // componentDidMount() { 
+  //   this.context.bootstrap();
+  // }
 
   onSend(messages) {
     GiftedChat.append([], messages);

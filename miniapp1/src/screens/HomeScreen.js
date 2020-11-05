@@ -1,6 +1,6 @@
 import React, {Component, useContext, useState, useEffect} from 'react';
-import {Alert, View, StyleSheet, Button} from 'react-native';
-import {Text, Title, TextInput} from 'react-native-paper';
+import {Alert, View, StyleSheet, Button, TextInput} from 'react-native';
+import {Text, Title} from 'react-native-paper';
 
 import {AuthContext} from '../navigation/AuthProvider';
 import FormButton from '../components/FormButton';
@@ -21,7 +21,11 @@ export default class App extends Component<Props> {
 
   constructor(props) {
     super(props);
-    this.state = {userToken: null};
+    this.state = {
+      userToken: null,
+      commonData: '',
+      inputData: '',
+      };
     // this.notif = new NotifService(
     //   this.onRegister.bind(this),
     //   this.onNotif.bind(this),
@@ -62,17 +66,35 @@ export default class App extends Component<Props> {
           <Button onPress={this._storeData} title="Save Data" />
           <Button onPress={this._retrieveData} title="Retrieve Data" />
         </View>
-        {/* <GiftedChat
-          onSend={(messages) => this.onSend(messages)}
-          user={{
-            _id: 1,
-          }}
-        /> */}
       </>
       );
     }
   }
 
+  _onBackButtonPress = async () => {
+    // const granted = await PermissionsAndroid.request(
+    //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+    // );
+    // if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+    //   //alert('You can use the location');
+    //   console.log('write granted');
+    // } else {
+    //   console.log('write denied');
+    // }
+
+    setActiveBundle(null);
+    console.log('setActiveBundle');
+
+    const bundles = await getBundles();
+    console.log(bundles);
+
+    const activeBundle = await getActiveBundle();
+    console.log(activeBundle);
+
+    reloadBundle();
+    console.log('reloadBundle');
+  };
+  
   _storeData = async () => {
     console.log('_storeData');
     try {

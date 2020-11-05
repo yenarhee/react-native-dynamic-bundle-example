@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {AuthContext} from './AuthProvider';
@@ -7,11 +7,15 @@ import HomeStack from './HomeStack';
 import Loading from '../components/Loading';
 
 export default function Routes() {
-  const {state, bootstrap} = useContext(AuthContext);
+  const {state, bootstrap } = useContext(AuthContext);
+
+  if (state.userToken == null) {
+      bootstrap();
+  }
 
   return (
     <NavigationContainer>
-      {bootstrap() && state.userToken ? <HomeStack /> : <AuthStack />}
+      {state.userToken ? <HomeStack /> : <AuthStack />}
     </NavigationContainer>
   );
 }

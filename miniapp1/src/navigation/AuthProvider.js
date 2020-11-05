@@ -16,7 +16,7 @@ async function _getSecureValue(key) {
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
-   const [state, dispatch] = React.useReducer(
+  const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
         case 'RESTORE_TOKEN':
@@ -43,6 +43,7 @@ export const AuthProvider = ({children}) => {
         userToken = await _getSecureValue('@MySuperStore:' + _key);
       } catch (e) {
         // Restoring token failed
+        console.log(e);
       }
 
       // After restoring token, we may need to validate it in production apps
