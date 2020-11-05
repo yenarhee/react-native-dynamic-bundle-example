@@ -308,7 +308,7 @@ PODS:
     - React
   - RNGestureHandler (1.8.0):
     - React
-  - RNKeychain (6.2.0):
+  - RNKeychain (5.0.1):
     - React
   - RNScreens (2.12.0):
     - React-Core
@@ -506,7 +506,7 @@ SPEC CHECKSUMS:
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNDynamicBundle: 2a92ecc4846de8eb4b4d5e1bf676fdb078c8f28d
   RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
-  RNKeychain: b8e0711b959a19c5b057d1e970d3c83d159b6da5
+  RNKeychain: a5623de13ec5378bfb8035422e3dee4fa538660d
   RNScreens: 4b488fdf9537bbce829e2910c8cce1d17f6d9be8
   RNVectorIcons: bc69e6a278b14842063605de32bec61f0b251a59
   Yoga: 7d13633d129fd179e01b8953d38d47be90db185a
