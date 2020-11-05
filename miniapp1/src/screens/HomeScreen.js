@@ -1,16 +1,14 @@
-import React, {Component, useContext, useState, useEffect} from 'react';
-import {Alert, View, StyleSheet, Button, TextInput} from 'react-native';
+import React, {Component} from 'react';
+import {View, StyleSheet, Button, TextInput} from 'react-native';
 import {Text, Title} from 'react-native-paper';
 import {
   setActiveBundle,
-  registerBundle,
   reloadBundle,
   getActiveBundle,
   getBundles,
 } from 'react-native-dynamic-bundle';
 
 import {AuthContext} from '../navigation/AuthProvider';
-import FormButton from '../components/FormButton';
 import AsyncStorage from '@react-native-community/async-storage';
 // import NotifService from '../services/NotifService';
 
@@ -23,6 +21,7 @@ const styles = StyleSheet.create({
   },
 });
 
+type Props = {};
 export default class App extends Component<Props> {
   static contextType = AuthContext;
 

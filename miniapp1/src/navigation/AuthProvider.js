@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext} from 'react';
 import * as Keychain from 'react-native-keychain';
 
 export const AuthContext = createContext({});
@@ -14,8 +14,6 @@ async function _getSecureValue(key) {
 }
 
 export const AuthProvider = ({children}) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
