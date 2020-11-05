@@ -7,10 +7,10 @@ import HomeStack from './HomeStack';
 import Loading from '../components/Loading';
 
 export default function Routes() {
-  const {state, bootstrap } = useContext(AuthContext);
+  const {state, bootstrap} = useContext(AuthContext);
 
   if (state.userToken == null) {
-      bootstrap();
+    bootstrap();
   }
 
   return (

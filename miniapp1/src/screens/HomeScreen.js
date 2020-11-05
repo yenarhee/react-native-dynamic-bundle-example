@@ -1,6 +1,13 @@
 import React, {Component, useContext, useState, useEffect} from 'react';
 import {Alert, View, StyleSheet, Button, TextInput} from 'react-native';
 import {Text, Title} from 'react-native-paper';
+import {
+  setActiveBundle,
+  registerBundle,
+  reloadBundle,
+  getActiveBundle,
+  getBundles,
+} from 'react-native-dynamic-bundle';
 
 import {AuthContext} from '../navigation/AuthProvider';
 import FormButton from '../components/FormButton';
@@ -25,7 +32,7 @@ export default class App extends Component<Props> {
       userToken: null,
       commonData: '',
       inputData: '',
-      };
+    };
     // this.notif = new NotifService(
     //   this.onRegister.bind(this),
     //   this.onNotif.bind(this),
@@ -42,46 +49,34 @@ export default class App extends Component<Props> {
     console.log(this.context);
     if (this.context.state.userToken == null) {
       // No token found, user isn't signed in
-      return (
-        <Title>Auth Error</Title>
-      );
+      return <Title>Auth Error</Title>;
     } else {
       // User is signed in
       return (
-      <>
-        <View style={styles.container}>
-          <Title>Miniapp</Title>
-          <Button onPress={this._onBackButtonPress} title="Back" />
-          <Text>Common Data: {this.state.commonData}</Text>
-          <TextInput
-            style={styles.textInput}
-            onChangeText={(inputData) => {
-              this.setState({inputData});
-            }}
-            value={this.state.inputData}
-            autocorrect={false}
-            placeholder="Common Data"
-            autoCapitalize="none"
-          />
-          <Button onPress={this._storeData} title="Save Data" />
-          <Button onPress={this._retrieveData} title="Retrieve Data" />
-        </View>
-      </>
+        <>
+          <View style={styles.container}>
+            <Title>Miniapp</Title>
+            <Button onPress={this._onBackButtonPress} title="Back" />
+            <Text>Common Data: {this.state.commonData}</Text>
+            <TextInput
+              style={styles.textInput}
+              onChangeText={(inputData) => {
+                this.setState({inputData});
+              }}
+              value={this.state.inputData}
+              autocorrect={false}
+              placeholder="Common Data"
+              autoCapitalize="none"
+            />
+            <Button onPress={this._storeData} title="Save Data" />
+            <Button onPress={this._retrieveData} title="Retrieve Data" />
+          </View>
+        </>
       );
     }
   }
 
   _onBackButtonPress = async () => {
-    // const granted = await PermissionsAndroid.request(
-    //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-    // );
-    // if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-    //   //alert('You can use the location');
-    //   console.log('write granted');
-    // } else {
-    //   console.log('write denied');
-    // }
-
     setActiveBundle(null);
     console.log('setActiveBundle');
 
@@ -94,14 +89,11 @@ export default class App extends Component<Props> {
     reloadBundle();
     console.log('reloadBundle');
   };
-  
+
   _storeData = async () => {
     console.log('_storeData');
     try {
-      await AsyncStorage.setItem(
-        'DATA',
-        this.state.inputData
-      );
+      await AsyncStorage.setItem('DATA', this.state.inputData);
     } catch (error) {
       // Error saving data
       console.log(error);

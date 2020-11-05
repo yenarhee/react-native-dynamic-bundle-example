@@ -18,14 +18,6 @@ export default class App extends Component<Props> {
     super(props);
   }
 
-  // componentDidMount() { 
-  //   this.context.bootstrap();
-  // }
-
-  onSend(messages) {
-    GiftedChat.append([], messages);
-  }
-
   render() {
     return (
       <>
@@ -39,7 +31,6 @@ export default class App extends Component<Props> {
   }
 
   _onBackButtonPress = async () => {
-
     setActiveBundle(null);
     console.log('setActiveBundle');
 
